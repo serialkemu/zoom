@@ -14,27 +14,15 @@ const AdminPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const params = new URLSearchParams({
-      customerName: customerName,
-      packageName: packageName,
-      paymentAccount: paymentAccount
-    }).toString();
+    const params = new URLSearchParams({ customerName }).toString();
     const longLink = `${window.location.origin}/info?${params}`;
     setGeneratedLink(longLink);
     
     try {
       const response = await axios.post(
         'https://api-ssl.bitly.com/v4/shorten',
-        {
-          long_url: longLink,
-          domain: "bit.ly"
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${BITLY_ACCESS_TOKEN}`,
-            'Content-Type': 'application/json'
-          }
-        }
+        { long_url: longLink, domain: "bit.ly" },
+        { headers: { Authorization: `Bearer ${BITLY_ACCESS_TOKEN}`, 'Content-Type': 'application/json' } }
       );
       setShortenedLink(response.data.link);
     } catch (error) {
