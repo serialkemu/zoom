@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LandingPage from './LandingPage';
-import AdminPage from './AdminPage';
-import InfoPage from './InfoPage';
+import LandingPage from './components/LandingPage';
+import AdminPage from './components/AdminPage';
+import InfoPage from './components/InfoPage';
 
 const App = () => (
   <Router>
