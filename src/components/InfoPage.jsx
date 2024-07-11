@@ -5,11 +5,15 @@ const InfoPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const customerName = queryParams.get('customerName');
-  const packageName = queryParams.get('packageName');
-  const paymentAccount = queryParams.get('paymentAccount');
+
+  // Mock data for other details based on customerName
+  const details = {
+    packageName: 'Gold',
+    paymentAccount: '1234-5678-9101-1121'
+  };
 
   // Restricting access if the required parameters are not present
-  if (!customerName || !packageName || !paymentAccount) {
+  if (!customerName) {
     return <Navigate to="/" />;
   }
 
@@ -17,8 +21,8 @@ const InfoPage = () => {
     <div>
       <h1>Information for {customerName}</h1>
       <p><strong>Customer Name:</strong> {customerName}</p>
-      <p><strong>Package:</strong> {packageName}</p>
-      <p><strong>Payment Account:</strong> {paymentAccount}</p>
+      <p><strong>Package:</strong> {details.packageName}</p>
+      <p><strong>Payment Account:</strong> {details.paymentAccount}</p>
     </div>
   );
 };
